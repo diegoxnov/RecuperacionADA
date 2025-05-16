@@ -85,19 +85,6 @@ Se utilizan técnicas como:
 
 ---
 
-## Uso de Librerías en Python
-
-| Etapa                            | Descripción                                                              | Librería recomendada     |
-|----------------------------------|---------------------------------------------------------------------------|--------------------------|
-| División en bloques              | Conversión de enteros a coeficientes polinomiales                        | `gmpy2`, `int`, propio   |
-| Transformada NTT                 | Implementación modular de la FFT en cuerpos finitos                      | `custom`, `numpy`, `sympy` (manual) |
-| Multiplicación punto a punto     | Producto de coeficientes en dominio de frecuencia                        | `numpy`, propio          |
-| Transformada inversa (INTT)      | NTT inversa para recuperar los coeficientes originales                   | `custom`, `sympy`        |
-| Teorema Chino del Resto (CRT)    | Combinar resultados de diferentes módulos para obtener un resultado único | `sympy.ntheory`, propio |
-| Corrección de acarreo            | Ajuste del resultado para obtener el número correcto                     | `gmpy2`, `manual`        |
-
----
-
 ## Comparación de Complejidad Algorítmica
 
 | Algoritmo                         | Complejidad Temporal     | Idea Principal                                       |
@@ -299,6 +286,9 @@ En comparación con otros métodos como Karatsuba y la multiplicación clásica,
 ## Referencias
 
 - Harvey, D., & van der Hoeven, J. (2019). Integer multiplication in time O(n log n). *Annals of Mathematics*, 193(2), 563–617.
+- https://arxiv.org/abs/1812.03823
+- https://gmplib.org
+- https://docs.sympy.org
 
 
 
