@@ -89,12 +89,12 @@ def generar_pruebas():
 def graficar_resultados(longitudes, tiempos):
     plt.figure(figsize=(10, 6))
     plt.plot(longitudes, tiempos, marker='o', linestyle='-', color='blue')
-    plt.title("Tiempo de multiplicación FFT vs Cantidad de dígitos")
+    plt.title("Tiempo de multiplicación")
     plt.xlabel("Número de dígitos por número")
     plt.ylabel("Tiempo de ejecución (segundos)")
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig("grafico_tiempo_vs_digitos.png")
+    plt.savefig("grafico_tiempo")
     plt.show()
 
 if __name__ == "__main__":

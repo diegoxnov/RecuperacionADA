@@ -15,16 +15,23 @@ El algoritmo desarrollado por **David Harvey y Joris van der Hoeven** en 2019 re
 
 Este algoritmo es altamente eficiente, pero también requiere una implementación matemática y algorítmica compleja, que implica transformadas sobre cuerpos finitos, manejo de enteros de precisión arbitraria, y estructuras numéricas avanzadas.
 
-## Justificación para el uso de Python
+## 📦 Librerías utilizadas y su propósito
 
-Dado el nivel de complejidad requerido por el algoritmo, Python resulta una elección mucho más adecuada por las siguientes razones:
+El código una versión simplificada del algoritmo de Harvey y van der Hoeven usando FFT (Transformada Rápida de Fourier). A diferencia de implementaciones más avanzadas que hacen uso de herramientas como `gmpy2`, `sympy`, o transformadas sobre cuerpos finitos (NTT), esta implementación trabaja exclusivamente con las siguientes librerías:
 
-### Disponibilidad de bibliotecas especializadas
-- `gmpy2`: permite el uso de enteros de precisión arbitraria con alto rendimiento.
-- `numpy`: ofrece herramientas para trabajar con vectores y realizar transformadas rápidas de Fourier (FFT).
-- `sympy`: útil para álgebra simbólica y validación matemática.
-- Existen implementaciones abiertas de NTT y CRT que pueden ser adaptadas en Python.
+### ✅ `numpy`
+- **Uso**: Se utiliza para calcular exponenciales complejas necesarias en la implementación manual de la FFT.
+- **Función utilizada**: `np.exp(-2j * np.pi / n)` dentro de la función `fft()`, para generar las raíces de la unidad necesarias para la combinación de resultados recursivos en la FFT.
+- **Importancia**: Permite realizar multiplicaciones y rotaciones en el dominio complejo, esenciales para transformar la secuencia en frecuencia.
 
+### ✅ `math`
+- **Uso**: Utilizada para el cálculo de potencias de 2 y logaritmos que aseguran que el tamaño de entrada de la FFT sea adecuado (potencia de dos).
+- **Funciones utilizadas**:
+  - `ceil()`: para redondear hacia arriba la potencia de 2.
+  - `log2()`: para calcular logaritmos base 2.
+- **Importancia**: Asegura que los arreglos usados en FFT tengan tamaño adecuado (potencia de 2) para un rendimiento óptimo.
+
+---
 
 # Algoritmo de Harvey y van der Hoeven (HvdH)
 
@@ -274,11 +281,16 @@ Interfaz principal del algoritmo.
 
 Para enteros grandes, usa multiply_integers_fft, simulando el algoritmo de Harvey y van der Hoeven.
 
+---
 
+## Gráfica del algoritmo planteado
 
+![imgen: medición del tiempo](grafico_tiempo.png)
+
+---
 ## Conclusión 
 
-El algoritmo de Harvey y van der Hoeven representa el estado del arte en multiplicación entera teórica. Aunque su implementación es compleja, Python ofrece un entorno ideal para desarrollar una versión experimental con el apoyo de librerías como `gmpy2`, `numpy` y `sympy`.
+El algoritmo de Harvey y van der Hoeven(hvdH) su implementación es compleja, Python ofrece un entorno ideal para desarrollar una versión experimental con el apoyo de librerías como `gmpy2`, `numpy` y `sympy`.
 
 En comparación con otros métodos como Karatsuba y la multiplicación clásica, HvdH es significativamente más rápido en teoría, especialmente para números extremadamente grandes (millones de dígitos).
 
@@ -287,9 +299,6 @@ En comparación con otros métodos como Karatsuba y la multiplicación clásica,
 ## Referencias
 
 - Harvey, D., & van der Hoeven, J. (2019). Integer multiplication in time O(n log n). *Annals of Mathematics*, 193(2), 563–617.
-- https://arxiv.org/abs/1812.03823
-- https://gmplib.org
-- https://docs.sympy.org
 
 
 
